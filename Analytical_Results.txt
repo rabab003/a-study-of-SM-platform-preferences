@@ -1,0 +1,17 @@
+Results of Social Media Platform Preference Analysis
+============================================================
+
+Basic Information:
+- Sample Size: 100 students
+- Age Range: 18-20 - 24+
+- Gender Distribution: 46 Male, 54 Female
+
+Probability Analysis:
+- P(Instagram) = 38/100 = 0.380
+- P(TikTok) = 27/100 = 0.270
+- P(Facebook) = 13/100 = 0.130
+- P(YouTube) = 9/100 = 0.090
+- P(Twitter) = 7/100 = 0.070
+- P(Snapchat) = 6/100 = 0.060
+
+Conclusion: Highest probability for platform 'Instagram' = 0.380
