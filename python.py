@@ -1,57 +1,81 @@
-# This modified code exactly fits what the doctor wants
+# import the necessary libraries
 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+#report title with decoration
 print("="*70)
 print("Report: A Study of Social Media Platform Preferences Using Python")
 print("="*70)
 
+
 # 1. Create realistic data (100 students)
-np.random.seed(123)  # For reproducibility
+np.random.seed(123)  # using seed from np lib For reproducibility (so we have the same random data each time we run the code)
 
 data = {
-    'Serial_Number': range(1, 101),
+    'Serial_Number': range(1, 101), # create serial num from 1 to 100 each num represents a student
+
+    # randomly generate age/ gender / platform / hours 
     'Age': np.random.choice(['18-20', '21-23', '24+'], 100, p=[0.6, 0.3, 0.1]),
+
     'Gender': np.random.choice(['Male', 'Female'], 100, p=[0.5, 0.5]),
+
     'Platform': np.random.choice(['Instagram', 'TikTok', 'Facebook', 'Twitter', 'Snapchat', 'YouTube'], 
                                 100, p=[0.35, 0.30, 0.15, 0.08, 0.07, 0.05]),
+
     'Hours': np.random.choice(['<1 hour', '1-2 hours', '3-4 hours', '>4 hours'], 
                                 100, p=[0.2, 0.4, 0.25, 0.15])
 }
 
+
+# change the data into a pandas dataframe like excel(columns and rows) 
 df = pd.DataFrame(data)
 
+
+#show sample of the data to make sure if it's correct
 print(f"✅ Data for {len(df)} students created successfully")
 print("\n📊 Sample of the data:")
 print(df.head())
 
-# 2. Probability Analysis (The most important part for the doctor)
+# 2 basic probability analysis
 print("\n" + "="*70)
 print("Part 1: Probability Analysis")
 print("="*70)
 
-# Direct application of the probability concepts you studied
+# explain the simple probability formula that we will depend on
 print("\nFirst: Simple Probability P(A) = n(A)/n(S)")
 print("Where: n(A) = number of elements in event A, n(S) = sample space size (100)")
 
 # Calculate probabilities for each platform
+
+#this var counts how many times each platform was chosen
 platform_counts = df['Platform'].value_counts()
 print("\nPlatform Preference Probabilities:")
+
+#loop through each platfom to calculate its probab
 for platform, count in platform_counts.items():
     P = count / 100
+
+    # print the result in % format
     print(f"P({platform}) = {count}/100 = {P:.3f}  ({P*100:.1f}%)")
 
+
 # Most probable platform
+#get the platform with the highest count
 most_common_platform = platform_counts.index[0]
 P_highest = platform_counts.iloc[0] / 100
+
+
 print(f"\nConclusion: The most preferred platform is '{most_common_platform}'")
 print(f"With probability: P({most_common_platform}) = {P_highest:.3f} = {P_highest*100:.1f}%")
 
-# 3. Additional Analysis (Shows your effort for extra credit)
+
+
+# 3. Additional Analysis (the demographics factors)
 print("\n" + "="*70)
-print("Part 2: Additional Analysis (Demonstrates Pursuit of Extra Credit)")
+print("Part 2: Additional Analysis ")
 print("="*70)
 
 # Platform distribution by gender
@@ -64,6 +88,12 @@ for gender in ['Male', 'Female']:
         if count > 0:
             P = count / len(gender_data)
             print(f"  {platform}: {count} (P={P:.2f})")
+
+
+
+
+
+# the graph using matplotlib library
 
 # 4. Professional Charts
 fig, axes = plt.subplots(2, 2, figsize=(15, 12))
@@ -97,13 +127,16 @@ plt.tight_layout()
 plt.savefig('Full_Analysis_Report.png', dpi=300, bbox_inches='tight')
 plt.show()
 
-print("\n✅ Created 4 charts in file: 'Full_Analysis_Report.png'")
+
 
 # 5. Save Data and Results
+
+#save the full data to csv file
 df.to_csv('Study_Data.csv', index=False, encoding='utf-8-sig')
-print("✅ Full data saved in: 'Study_Data.csv'")
+
 
 # Text report of results
+#save the Analytical_Results in txt file
 with open('Analytical_Results.txt', 'w', encoding='utf-8') as f:
     f.write("Results of Social Media Platform Preference Analysis\n")
     f.write("="*60 + "\n\n")
@@ -119,12 +152,3 @@ with open('Analytical_Results.txt', 'w', encoding='utf-8') as f:
     
     f.write(f"\nConclusion: Highest probability for platform '{most_common_platform}' = {P_highest:.3f}\n")
 
-print("✅ Analytical results saved in: 'Analytical_Results.txt'")
-
-print("\n" + "="*70)
-print("🎉 Completed data preparation and basic analysis!")
-print("Now you can write the final report using these files:")
-print("1. Full_Analysis_Report.png ← Charts")
-print("2. Study_Data.csv ← Complete Data")
-print("3. Analytical_Results.txt ← Written Results")
-print("="*70)
